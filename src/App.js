@@ -23,6 +23,13 @@ class App extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        let contact = {
+            name: this.state.name
+        }
+        this.setState({
+            name: ''
+        });
+        this.props.createContact(contact);
         console.log(this.state.name);
     }
 
@@ -32,6 +39,10 @@ class App extends Component {
             <div>
                 <h1>Clientside Contacts App</h1>
                 <hr />
+                
+                { <ul>
+                    {this.props.contacts.map((contact, i) => <li key={i}>{contact.name}</li> )}
+                </ul> }
 
                 <div>
                     <h3>Add Contact Form</h3>
