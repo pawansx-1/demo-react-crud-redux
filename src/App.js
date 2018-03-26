@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as contactAction from './actions/contactAction.js'
 
 class App extends Component {
 
@@ -44,4 +46,16 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        contacts: state.contact
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createContact: contact => dispatch(contactAction.createContact(contact))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
